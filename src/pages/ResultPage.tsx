@@ -1,7 +1,7 @@
 import { createStyles, Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import CancelIcon from '@material-ui/icons/Cancel'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { QuizApi } from '../api/QuizApi'
 import { PageContainer } from '../components/layout/PageContainer'
@@ -43,14 +43,14 @@ export const ResultPage = () => {
       {renderScore()}
       <Divider className={classes.divider} />
       {questions.map((q, index) => (
-        <>
+        <React.Fragment key={index}>
           <Typography>{q.topic}</Typography>
           <Typography>
             <span className={classes.icon}>{q.isCorrect ? <CheckCircleIcon style={{color: '#6ade05'}} /> : <CancelIcon style={{color: '#ff002f'}} />}</span>
             <span>{q.userAnswer}</span>
           </Typography>
           {index < questions.length - 1 && <br />}
-        </>
+        </React.Fragment>
       ))}
     </PageContainer>
   )
