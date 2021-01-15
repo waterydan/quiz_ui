@@ -51,8 +51,8 @@ export const QuizPage = () => {
 
   return (
     <PageContainer>
-      <Typography variant="h3">Star Wars Trivia Quiz</Typography>
-      <Stepper activeStep={activeStep} alternativeLabel>
+      <Typography variant="h4">Star Wars Quiz</Typography>
+      <Stepper activeStep={activeStep} alternativeLabel style={{}}>
         {questions.map((q, index) => (
           <Step key={q.id} style={{width: '100%'}}>
             <StepLabel>Question {index + 1}</StepLabel>

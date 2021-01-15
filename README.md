@@ -6,6 +6,12 @@ This project is created as part of interview process in Preezie.
 In the project directory, run:
 `yarn start`
 
+## Feature Overview
+
+* All fields are dynamically generated from API.
+* After each answer, the data is sent to backend for persistence.
+* The app is for single user. All answers are remembered until backend is restarted.
+
 ## Development Notes
 * This app is based on [CRA](https://github.com/facebook/create-react-app) and relies on many of its built-in capability, such as bundling and environment variable support. 
 
