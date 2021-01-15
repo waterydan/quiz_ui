@@ -1,4 +1,4 @@
-import { Step, StepContent, StepLabel, Stepper, Typography } from '@material-ui/core'
+import { Step, StepLabel, Stepper, Typography } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
@@ -34,10 +34,10 @@ export const QuizPage = () => {
 
   const handleNext = async (values: Question) => {
     await handleSubmit(values)
-    setActiveStep((prevActiveStep) => prevActiveStep + 1)
-
     if (activeStep + 1 >= questions.length) {
       nav.push('/result')
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1)
     }
   }
 
@@ -45,25 +45,28 @@ export const QuizPage = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
+  if (questions.length === 0) {
+    return null
+  }
+
   return (
     <PageContainer>
       <Typography variant="h3">Star Wars Trivia Quiz</Typography>
-      <Stepper activeStep={activeStep} orientation="vertical">
+      <Stepper activeStep={activeStep} alternativeLabel>
         {questions.map((q, index) => (
           <Step key={q.id} style={{width: '100%'}}>
             <StepLabel>Question {index + 1}</StepLabel>
-            <StepContent>
-              <QuizItem
-                question={q}
-                backDisabled={activeStep === 0}
-                onBackCliecked={handleBack}
-                onNextClicked={handleNext}
-                last={activeStep === questions.length - 1}
-              />
-            </StepContent>
           </Step>
         ))}
       </Stepper>
+      <QuizItem
+        key={questions[activeStep].id}
+        question={questions[activeStep]}
+        backDisabled={activeStep === 0}
+        onBackCliecked={handleBack}
+        onNextClicked={handleNext}
+        last={activeStep === questions.length - 1}
+      />
     </PageContainer>
   )
 }

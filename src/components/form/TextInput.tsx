@@ -13,7 +13,7 @@ export const TextInput = (props: IProps & TextFieldProps) => (
       <TextField
         {..._.omit(props, 'fieldName')}
         onChange={(e) => fieldProps.form.setFieldValue(props.fieldName, e.target.value)}
-        value={fieldProps.form.values[props.fieldName] || ''}
+        value={fieldProps.field.value || ''}
       />
     )}
   </Field>
